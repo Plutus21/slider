@@ -10,10 +10,20 @@ const oneCheck = document.getElementById('one-check');
 const twoCheck = document.getElementById('two-check');
 const threeCheck = document.getElementById('three-check');
 
-const firstSlide = document.getElementById('first-slide')
+const firstSlide = document.getElementById('first-slide');
+const secondSlide = document.getElementById('second-slide');
+const lastSlide = document.getElementById('last-slide');
 
 const jsonString = `{
     "list": [
+    {
+    "city": " ",
+    "position": " ",
+    "area": " ",
+    "time": " ",
+    "cost": " ",
+    "src": " "
+    },
     {
     "city": "Rostov-on-Don",
     "position": "LCD Admiral",
@@ -37,6 +47,14 @@ const jsonString = `{
     "time": "3 months",
     "cost": "Upon request",
     "src": "./images/slide3.jpg"
+    },
+    {
+    "city": " ",
+    "position": " ",
+    "area": " ",
+    "time": " ",
+    "cost": " ",
+    "src": " "
     }
     ]
 }`
@@ -45,27 +63,89 @@ const data = JSON.parse(jsonString);
 
 const list = data.list;
 
-form.onchange = function (e) {
-    if(e.target === twoCheck) {
-        city.innerHTML = list[1].city;
-        position.innerHTML = list[1].position;
-        area.innerHTML = list[1].area;
-        time.innerHTML = list[1].time;
-        cost.innerHTML = list[1].cost;
-        sliderImg.innerHTML = `<img src=${list[1].src} class="completed-projects__img"/>`;
-    } else if(e.target === threeCheck) {
-        city.innerHTML = list[2].city;
-        position.innerHTML = list[2].position;
-        area.innerHTML = list[2].area;
-        time.innerHTML = list[2].time;
-        cost.innerHTML = list[2].cost;
-        sliderImg.innerHTML = `<img src=${list[2].src} class="completed-projects__img"/>`;
-    } else if (e.target === oneCheck) {
-        city.innerHTML = list[0].city;
-        position.innerHTML = list[0].position;
-        area.innerHTML = list[0].area;
-        time.innerHTML = list[0].time;
-        cost.innerHTML = list[0].cost;
-        sliderImg.innerHTML = `<img src=${list[0].src} class="completed-projects__img"/>`;
+let navButtonItems = document.querySelectorAll('.nav-slider-button');
+let radioButtonItems = document.querySelectorAll('.custom-radio');
+
+function dataList(index) {
+    city.innerHTML = list[index].city;
+    position.innerHTML = list[index].position;
+    area.innerHTML = list[index].area;
+    time.innerHTML = list[index].time;
+    cost.innerHTML = list[index].cost;
+    sliderImg.innerHTML = `<img src=${list[index].src} class="completed-projects__img"/>`;
+}
+
+function activeNavButton(index) {
+    if (index === 1) {
+        navButtonItems[0].classList.add('active');
+        navButtonItems[1].classList.remove('active');
+        navButtonItems[2].classList.remove('active');
+    } else if (index === 2) {
+        navButtonItems[0].classList.remove('active');
+        navButtonItems[1].classList.add('active');
+        navButtonItems[2].classList.remove('active');
+    } else if (index === 3) {
+        navButtonItems[0].classList.remove('active');
+        navButtonItems[1].classList.remove('active');
+        navButtonItems[2].classList.add('active');
     }
 }
+
+let indexChange = 0
+
+form.onchange = function (e) {
+    if(e.target === oneCheck) {
+        dataList(indexChange = 1);
+        activeNavButton(indexChange = 1);
+    } else if(e.target === twoCheck) {
+        dataList(indexChange = 2);
+        activeNavButton(indexChange = 2);
+    } else if (e.target === threeCheck) {
+        dataList(indexChange = 3);
+        activeNavButton(indexChange = 3);
+    }
+};
+
+firstSlide.addEventListener('click', () => {
+    activeNavButton(indexChange = 1);
+    dataList(indexChange = 1);
+});
+
+secondSlide.addEventListener('click', () => {
+    activeNavButton(indexChange = 2);
+    dataList(indexChange = 2);
+});
+
+lastSlide.addEventListener('click', () => {
+    activeNavButton(indexChange = 3);
+    dataList(indexChange = 3);
+});
+
+const leftSwipe = document.getElementById('left-swipe');
+const rightSwipe = document.getElementById('right-swipe');
+
+leftSwipe.addEventListener('click', () => {
+    dataList(indexChange -1);
+    activeNavButton(indexChange -1);
+    if (indexChange > 2) {
+        --indexChange;
+    } else {
+        indexChange = 4;
+    }
+});
+
+rightSwipe.addEventListener('click', () => {
+    dataList(indexChange +1);
+    activeNavButton(indexChange +1);
+    if (indexChange < 2) {
+        indexChange++;
+    } else {
+        indexChange = 0;
+    }
+});
+
+
+window.addEventListener('load', () => {
+    activeNavButton(indexChange = 1);
+    dataList(indexChange = 1);
+});

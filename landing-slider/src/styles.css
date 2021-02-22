@@ -19,13 +19,7 @@
     margin-right: 60.5px;
 }
 
-.completed-nav__item button:hover {
-    color: #E3B873;
-    border-bottom: 0.5px solid #E3B873;
-    width: auto;
-}
-
-.completed-nav__item button {
+.nav-slider-button {
     text-decoration: none;
     font-family: Yeseva One;
     font-style: normal;
@@ -36,7 +30,19 @@
     color: rgba(255, 255, 255, 0.3);
 }
 
-.completed-nav__item button:focus {
+.nav-slider-button:hover {
+    color: #E3B873;
+    border-bottom: 0.5px solid #E3B873;
+    width: auto;
+}
+
+.nav-slider-button:focus {
+    color: #E3B873;
+    border-bottom: 0.5px solid #E3B873;
+    width: auto;
+}
+
+.active {
     color: #E3B873;
     border-bottom: 0.5px solid #E3B873;
     width: auto;
@@ -160,6 +166,7 @@ button:focus {
     display: inline-flex;
     align-items: center;
     user-select: none;
+    cursor: pointer;
 }
 
 .custom-radio>span::before {
