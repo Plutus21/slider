@@ -10,12 +10,11 @@ const oneCheck = document.getElementById('one-check');
 const twoCheck = document.getElementById('two-check');
 const threeCheck = document.getElementById('three-check');
 
-const firstSlide = document.getElementById('first-slide');
-const secondSlide = document.getElementById('second-slide');
-const lastSlide = document.getElementById('last-slide');
+const firstSlideNav = document.getElementById('first-slide__nav');
+const secondSlideNav = document.getElementById('second-slide__nav');
+const lastSlideNav = document.getElementById('last-slide__nav');
 
-const jsonString = `{
-    "list": [
+const list =[
     {
     "city": " ",
     "position": " ",
@@ -56,15 +55,11 @@ const jsonString = `{
     "cost": " ",
     "src": " "
     }
-    ]
-}`
+]
 
-const data = JSON.parse(jsonString);
-
-const list = data.list;
 
 let navButtonItems = document.querySelectorAll('.nav-slider-button');
-let radioButtonItems = document.querySelectorAll('.custom-radio');
+let checkButtonItems = document.querySelectorAll('.button-check')
 
 function dataList(index) {
     city.innerHTML = list[index].city;
@@ -77,75 +72,103 @@ function dataList(index) {
 
 function activeNavButton(index) {
     if (index === 1) {
-        navButtonItems[0].classList.add('active');
-        navButtonItems[1].classList.remove('active');
-        navButtonItems[2].classList.remove('active');
+        navButtonItems[0].classList.add('nav-slider-button__active');
+        navButtonItems[1].classList.remove('nav-slider-button__active');
+        navButtonItems[2].classList.remove('nav-slider-button__active');
     } else if (index === 2) {
-        navButtonItems[0].classList.remove('active');
-        navButtonItems[1].classList.add('active');
-        navButtonItems[2].classList.remove('active');
+        navButtonItems[0].classList.remove('nav-slider-button__active');
+        navButtonItems[1].classList.add('nav-slider-button__active');
+        navButtonItems[2].classList.remove('nav-slider-button__active');
     } else if (index === 3) {
-        navButtonItems[0].classList.remove('active');
-        navButtonItems[1].classList.remove('active');
-        navButtonItems[2].classList.add('active');
+        navButtonItems[0].classList.remove('nav-slider-button__active');
+        navButtonItems[1].classList.remove('nav-slider-button__active');
+        navButtonItems[2].classList.add('nav-slider-button__active');
+    }
+}
+
+function activeCheckButton(index) {
+    if (index === 1) {
+        checkButtonItems[0].classList.add('button-check__active');
+        checkButtonItems[1].classList.remove('button-check__active');
+        checkButtonItems[2].classList.remove('button-check__active');
+    } else if (index === 2) {
+        checkButtonItems[0].classList.remove('button-check__active');
+        checkButtonItems[1].classList.add('button-check__active');
+        checkButtonItems[2].classList.remove('button-check__active');
+    } else if (index === 3) {
+        checkButtonItems[0].classList.remove('button-check__active');
+        checkButtonItems[1].classList.remove('button-check__active');
+        checkButtonItems[2].classList.add('button-check__active');
     }
 }
 
 let indexChange = 0
 
-form.onchange = function (e) {
-    if(e.target === oneCheck) {
-        dataList(indexChange = 1);
-        activeNavButton(indexChange = 1);
-    } else if(e.target === twoCheck) {
-        dataList(indexChange = 2);
-        activeNavButton(indexChange = 2);
-    } else if (e.target === threeCheck) {
-        dataList(indexChange = 3);
-        activeNavButton(indexChange = 3);
-    }
-};
-
-firstSlide.addEventListener('click', () => {
+firstSlideNav.addEventListener('click', () => {
     activeNavButton(indexChange = 1);
     dataList(indexChange = 1);
+    activeCheckButton(indexChange = 1);
 });
 
-secondSlide.addEventListener('click', () => {
+secondSlideNav.addEventListener('click', () => {
     activeNavButton(indexChange = 2);
     dataList(indexChange = 2);
+    activeCheckButton(indexChange = 2);
 });
 
-lastSlide.addEventListener('click', () => {
+lastSlideNav.addEventListener('click', () => {
     activeNavButton(indexChange = 3);
     dataList(indexChange = 3);
+    activeCheckButton(indexChange = 3);
+});
+
+oneCheck.addEventListener('click', () => {
+    activeNavButton(indexChange = 1);
+    dataList(indexChange = 1);
+    activeCheckButton(indexChange = 1);
+});
+
+twoCheck.addEventListener('click', () => {
+    activeNavButton(indexChange = 2);
+    dataList(indexChange = 2);
+    activeCheckButton(indexChange = 2);
+});
+
+threeCheck.addEventListener('click', () => {
+    activeNavButton(indexChange = 3);
+    dataList(indexChange = 3);
+    activeCheckButton(indexChange = 3);
 });
 
 const leftSwipe = document.getElementById('left-swipe');
 const rightSwipe = document.getElementById('right-swipe');
 
 leftSwipe.addEventListener('click', () => {
-    dataList(indexChange -1);
-    activeNavButton(indexChange -1);
-    if (indexChange > 2) {
-        --indexChange;
+    if (indexChange > 1) {
+        indexChange--;
     } else {
-        indexChange = 4;
+        indexChange = 3;
     }
+
+    dataList(indexChange);
+    activeNavButton(indexChange);
+    activeCheckButton(indexChange);
 });
 
 rightSwipe.addEventListener('click', () => {
-    dataList(indexChange +1);
-    activeNavButton(indexChange +1);
-    if (indexChange < 2) {
+    if (indexChange < 3) {
         indexChange++;
     } else {
-        indexChange = 0;
+        indexChange = 1;
     }
-});
 
+    dataList(indexChange);
+    activeNavButton(indexChange);
+    activeCheckButton(indexChange);
+});
 
 window.addEventListener('load', () => {
     activeNavButton(indexChange = 1);
     dataList(indexChange = 1);
+    activeCheckButton(indexChange = 1);
 });

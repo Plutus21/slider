@@ -11,9 +11,9 @@
 <section class="completed-projects">
     <div class="wrapper">
         <ul class="completed-nav">
-            <li class="completed-nav__item"><button class="nav-slider-button active" id="first-slide">Rostov-on-Don, Admiral</button></li>
-            <li class="completed-nav__item"><button class="nav-slider-button" id="second-slide">Sochi Thieves</button></li>
-            <li class="completed-nav__item"><button class="nav-slider-button" id="last-slide">Rostov-on-Don Patriotic</button></li>
+            <li class="completed-nav__item"><button class="nav-slider-button nav-slider-button__active" id="first-slide__nav">Rostov-on-Don, Admiral</button></li>
+            <li class="completed-nav__item"><button class="nav-slider-button" id="second-slide__nav">Sochi Thieves</button></li>
+            <li class="completed-nav__item"><button class="nav-slider-button" id="last-slide__nav">Rostov-on-Don Patriotic</button></li>
         </ul>
         <div class="section2-wrapper">
             <div>
@@ -72,22 +72,11 @@
                         <button id="left-swipe">
                             <img src="./images/left.svg" class="vector-straight">
                         </button>
-                        <form name="radio-form" id="radio-form">
-                            <div class="circles-check">
-                                <label class="custom-radio">
-                                    <input id="one-check" type="radio" name="slide" value="1" checked/>
-                                    <span></span>
-                                </label>
-                                <label class="custom-radio">
-                                    <input id="two-check" type="radio" name="slide" value="2" class="circle"/>
-                                    <span></span>
-                                </label>
-                                <label class="custom-radio">
-                                    <input id="three-check" type="radio" name="slide" value="3" class="circle"/>
-                                    <span></span>
-                                </label>
-                            </div>
-                        </form>
+                        <div class="circles-check">
+                            <button id="one-check" class="button-check button-check__active"></button>
+                            <button id="two-check" class="button-check"></button>
+                            <button id="three-check" class="button-check"></button>
+                        </div>
                         <button id="right-swipe">
                             <img src="./images/right.svg" class="vector-straight">
                         </button>
