@@ -3,7 +3,6 @@ const position = document.getElementById('position');
 const area = document.getElementById('area');
 const time = document.getElementById('time');
 const cost = document.getElementById('cost');
-const form = document.getElementById('radio-form');
 const sliderImg = document.getElementById('slider-img');
 
 const oneCheck = document.getElementById('one-check');
@@ -59,7 +58,7 @@ const list =[
 
 
 let navButtonItems = document.querySelectorAll('.nav-slider-button');
-let checkButtonItems = document.querySelectorAll('.button-check')
+let checkButtonItems = document.querySelectorAll('.button-check');
 
 function dataList(index) {
     city.innerHTML = list[index].city;
@@ -102,43 +101,73 @@ function activeCheckButton(index) {
     }
 }
 
-let indexChange = 0
+let indexChange = 0;
 
 firstSlideNav.addEventListener('click', () => {
     activeNavButton(indexChange = 1);
     dataList(indexChange = 1);
     activeCheckButton(indexChange = 1);
+
+    dignityBlockOne.classList.add('dignity-block1');
+    dignityBlockOne.classList.remove('dignity-block1__slider-two');
 });
 
 secondSlideNav.addEventListener('click', () => {
     activeNavButton(indexChange = 2);
     dataList(indexChange = 2);
     activeCheckButton(indexChange = 2);
+
+    dignityBlockOne.classList.remove('dignity-block1');
+    dignityBlockOne.classList.add('dignity-block1__slider-two');
 });
 
 lastSlideNav.addEventListener('click', () => {
     activeNavButton(indexChange = 3);
     dataList(indexChange = 3);
     activeCheckButton(indexChange = 3);
+
+    dignityBlockOne.classList.add('dignity-block1');
+    dignityBlockOne.classList.remove('dignity-block1__slider-two');
 });
 
 oneCheck.addEventListener('click', () => {
     activeNavButton(indexChange = 1);
     dataList(indexChange = 1);
     activeCheckButton(indexChange = 1);
+
+    dignityBlockOne.classList.add('dignity-block1');
+    dignityBlockOne.classList.remove('dignity-block1__slider-two');
 });
 
 twoCheck.addEventListener('click', () => {
     activeNavButton(indexChange = 2);
     dataList(indexChange = 2);
     activeCheckButton(indexChange = 2);
+
+    dignityBlockOne.classList.remove('dignity-block1');
+    dignityBlockOne.classList.add('dignity-block1__slider-two');
 });
 
 threeCheck.addEventListener('click', () => {
     activeNavButton(indexChange = 3);
     dataList(indexChange = 3);
     activeCheckButton(indexChange = 3);
+
+    dignityBlockOne.classList.add('dignity-block1');
+    dignityBlockOne.classList.remove('dignity-block1__slider-two');
 });
+
+let dignityBlockOne = document.getElementById('dignity-block-one');
+
+function twoSliderClassChange() {
+    if(indexChange === 2) {
+        dignityBlockOne.classList.remove('dignity-block1');
+        dignityBlockOne.classList.add('dignity-block1__slider-two');
+    } else {
+        dignityBlockOne.classList.add('dignity-block1');
+        dignityBlockOne.classList.remove('dignity-block1__slider-two');
+    }
+}
 
 const leftSwipe = document.getElementById('left-swipe');
 const rightSwipe = document.getElementById('right-swipe');
@@ -149,6 +178,8 @@ leftSwipe.addEventListener('click', () => {
     } else {
         indexChange = 3;
     }
+
+    twoSliderClassChange();
 
     dataList(indexChange);
     activeNavButton(indexChange);
@@ -161,6 +192,8 @@ rightSwipe.addEventListener('click', () => {
     } else {
         indexChange = 1;
     }
+
+    twoSliderClassChange();
 
     dataList(indexChange);
     activeNavButton(indexChange);
